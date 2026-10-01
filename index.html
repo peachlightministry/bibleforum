@@ -5,24 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bible Forum</title>
 <meta name="description" content="Parables of the Bible, their common interpretation, and how the saints lived them.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f7f5f0;
-    --surface: #fdfcf9;
-    --ink: #1d1b18;
-    --muted: #6d675d;
-    --line: #dcd7cb;
-    --accent: #7a1f2b;
+    --navy: #14213d;
+    --navy-deep: #0c1529;
+    --navy-line: #2a3a62;
+    --burgundy: #7a1f2b;
+    --burgundy-tint: #f6ebec;
+    --gold: #b8923a;
+    --gold-light: #d8b968;
+    --parchment: #f3ede0;
+    --ivory: #fffdf8;
+    --ink: #1b1f2e;
+    --muted: #5d6070;
+    --line: #ddd2b8;
 
-    --font-serif: Georgia, "Times New Roman", serif;
-    --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 
     --space-1: 8px;
     --space-2: 16px;
     --space-3: 24px;
     --space-4: 48px;
     --space-5: 96px;
-    --radius: 2px;
+    --radius: 3px;
     --icon: 20px;
   }
 
@@ -30,143 +39,278 @@
 
   body {
     margin: 0;
-    background: var(--bg);
+    background: var(--parchment);
     color: var(--ink);
     font-family: var(--font-sans);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
 
-  .wrap {
-    width: min(720px, 100% - 2 * var(--space-2));
-    margin-inline: auto;
-  }
+  .wrap { width: min(760px, 100% - 2 * var(--space-2)); margin-inline: auto; }
 
-  header { padding: var(--space-5) 0 var(--space-4); }
+  /* Top bar */
+  .topbar {
+    background: var(--navy-deep);
+    border-bottom: 1px solid var(--gold);
+  }
+  .topbar .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--ivory);
+    text-decoration: none;
+    font-family: var(--font-serif);
+    font-size: 1.375rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .brand svg { width: 30px; height: 30px; color: var(--gold-light); }
+  .nav a {
+    color: var(--gold-light);
+    text-decoration: none;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 8px 0;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .nav a:hover, .nav a[aria-current="true"] { color: var(--ivory); border-color: var(--gold); }
+  .nav a:focus-visible, .brand:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 4px; }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    background-color: var(--navy);
+    color: var(--ivory);
+    text-align: center;
+    padding: var(--space-5) 0 calc(var(--space-5) - 16px);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cpath d='M28 6 50 28 28 50 6 28Z' fill='none' stroke='%23b8923a' stroke-opacity='.18' stroke-width='1'/%3E%3Cpath d='M28 0v8M28 48v8M0 28h8M48 28h8' stroke='%23b8923a' stroke-opacity='.18' stroke-width='1'/%3E%3C/svg%3E");
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 0%, transparent 75%);
+            mask-image: radial-gradient(ellipse at center, #000 0%, transparent 75%);
+  }
+  .hero .wrap { position: relative; }
 
   .eyebrow {
     margin: 0 0 var(--space-2);
     font-size: 0.75rem;
-    letter-spacing: 0.18em;
+    font-weight: 500;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--gold-light);
   }
-
   h1 {
     margin: 0;
     font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: clamp(2.25rem, 6vw, 3.5rem);
-    line-height: 1.1;
-    letter-spacing: -0.01em;
+    font-weight: 600;
+    font-size: clamp(2.75rem, 8vw, 4.75rem);
+    line-height: 1.05;
+    letter-spacing: -0.005em;
   }
-
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    margin: var(--space-3) auto;
+    color: var(--gold);
+  }
+  .ornament::before, .ornament::after {
+    content: "";
+    width: 72px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.7;
+  }
+  .ornament svg { width: 22px; height: 22px; }
   .lede {
-    margin: var(--space-2) 0 0;
-    max-width: 46ch;
-    color: var(--muted);
+    margin: 0 auto;
+    max-width: 48ch;
+    color: #c9cfe0;
     font-size: 1.0625rem;
   }
 
-  main { padding-bottom: var(--space-5); }
+  /* Scalloped edge into the list */
+  .edge { display: block; width: 100%; height: 14px; color: var(--parchment); background: var(--navy); }
 
-  .list { border-top: 1px solid var(--line); }
+  /* List */
+  main { padding: var(--space-4) 0 var(--space-5); }
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0 0 var(--space-3);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--burgundy);
+  }
+  .section-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 
-  .item { border-bottom: 1px solid var(--line); }
+  .list { display: grid; gap: 12px; }
+
+  .item {
+    background: var(--ivory);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--gold);
+    border-radius: var(--radius);
+    box-shadow: 0 1px 0 rgba(20, 33, 61, 0.04);
+    transition: border-color 0.25s, box-shadow 0.25s, background-color 0.25s;
+  }
+  .item:hover { box-shadow: 0 4px 14px rgba(20, 33, 61, 0.08); }
+  .item.is-open { border-left-color: var(--burgundy); background: #fff; box-shadow: 0 6px 20px rgba(20, 33, 61, 0.1); }
+
+  .item h2 { margin: 0; font: inherit; }
 
   .trigger {
     display: flex;
     align-items: center;
     gap: var(--space-2);
     width: 100%;
-    padding: var(--space-2) var(--space-1);
+    padding: 18px var(--space-2);
     background: none;
     border: 0;
     color: inherit;
     font: inherit;
     text-align: left;
     cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
   }
-
-  .trigger:hover { background: rgba(122, 31, 43, 0.04); }
-  .trigger:hover .title { color: var(--accent); }
-  .trigger:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .trigger:focus-visible { outline: 2px solid var(--burgundy); outline-offset: -2px; }
 
   .num {
     flex: none;
-    width: 1.5rem;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
     font-family: var(--font-serif);
-    font-size: 0.9375rem;
-    color: var(--muted);
-    font-variant-numeric: tabular-nums;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--gold);
+    transition: background-color 0.25s, color 0.25s, border-color 0.25s;
   }
+  .trigger:hover .num { background: var(--gold); color: var(--ivory); }
+  .is-open .num { background: var(--burgundy); border-color: var(--burgundy); color: var(--ivory); }
 
   .title {
     flex: 1;
     font-family: var(--font-serif);
-    font-size: 1.1875rem;
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: var(--navy);
     transition: color 0.2s;
   }
+  .trigger:hover .title, .is-open .title { color: var(--burgundy); }
 
   .chevron {
     flex: none;
     width: var(--icon);
     height: var(--icon);
-    color: var(--muted);
+    color: var(--gold);
     transition: transform 0.25s ease, color 0.2s;
   }
+  .is-open .chevron { transform: rotate(180deg); color: var(--burgundy); }
 
-  .trigger[aria-expanded="true"] .chevron { transform: rotate(180deg); color: var(--accent); }
-
-  .panel {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.28s ease;
-  }
-  .panel[data-open="true"] { grid-template-rows: 1fr; }
+  .panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.28s ease; }
+  .is-open .panel { grid-template-rows: 1fr; }
   .panel > div { overflow: hidden; }
-
-  .panel p {
-    margin: 0;
-    padding: 0 var(--space-1) var(--space-3) calc(var(--space-1) + 1.5rem + var(--space-2));
-    color: var(--muted);
-  }
-
-  footer {
-    padding: var(--space-3) 0 var(--space-4);
+  .panel-inner {
+    margin: 0 var(--space-2);
+    padding: var(--space-2) 0 var(--space-3) calc(32px + var(--space-2));
     border-top: 1px solid var(--line);
     color: var(--muted);
+  }
+  .panel-inner p { margin: 0; }
+
+  /* Footer */
+  footer {
+    background: var(--navy-deep);
+    border-top: 1px solid var(--gold);
+    color: #9aa3bd;
     font-size: 0.8125rem;
+    text-align: center;
+    padding: var(--space-4) 0;
   }
+  footer svg { width: 26px; height: 26px; color: var(--gold); margin-bottom: var(--space-1); }
+  footer p { margin: 0; }
 
-  @media (max-width: 520px) {
-    header { padding: var(--space-4) 0 var(--space-3); }
-    main { padding-bottom: var(--space-4); }
-    .title { font-size: 1.0625rem; }
+  @media (max-width: 560px) {
+    .hero { padding: var(--space-4) 0 var(--space-4); }
+    main { padding: var(--space-3) 0 var(--space-4); }
+    .title { font-size: 1.1875rem; }
+    .panel-inner { padding-left: 0; }
+    .trigger { padding: 16px 12px; gap: 12px; }
   }
-
   @media (prefers-reduced-motion: reduce) {
-    .panel, .chevron, .trigger, .title { transition: none; }
+    * { transition: none !important; }
   }
 </style>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="cross" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="16" cy="16" r="14.5"/>
+    <path d="M16 6v20M10 12h12"/>
+    <path d="M13 26h6" />
+  </symbol>
+</svg>
+
+<header class="topbar">
   <div class="wrap">
-    <header>
-      <p class="eyebrow">Bible Forum</p>
-      <h1>The Parables</h1>
-      <p class="lede">Each parable, its most common interpretation, and how the saints and desert fathers lived it.</p>
-    </header>
-
-    <main>
-      <div class="list" id="list">
-        <!-- items rendered by script below -->
-      </div>
-    </main>
-
-    <footer>&copy; Bible Forum</footer>
+    <a class="brand" href="#top" aria-label="Bible Forum home">
+      <svg aria-hidden="true"><use href="#cross"/></svg>
+      Bible Forum
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#parables" aria-current="true">Parables</a>
+    </nav>
   </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow">Scripture &amp; Tradition</p>
+    <h1>The Parables</h1>
+    <div class="ornament" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2 22 12 12 22 2 12Z"/><path d="M12 8 16 12 12 16 8 12Z" fill="currentColor"/></svg>
+    </div>
+    <p class="lede">Each parable, its most common interpretation, and how the saints and desert fathers lived it.</p>
+  </div>
+</section>
+
+<svg class="edge" viewBox="0 0 1200 14" preserveAspectRatio="none" aria-hidden="true">
+  <path fill="currentColor" d="M0 14V9h1200v5H0Z"/>
+  <path fill="currentColor" d="M0 14 600 0l600 14Z"/>
+</svg>
+
+<main id="parables">
+  <div class="wrap">
+    <h2 class="section-label">Parables</h2>
+    <div class="list" id="list"></div>
+  </div>
+</main>
+
+<footer>
+  <svg aria-hidden="true"><use href="#cross"/></svg>
+  <p>&copy; Bible Forum</p>
+</footer>
 
 <script>
   const items = [
@@ -185,18 +329,18 @@
   const list = document.getElementById("list");
 
   items.forEach((item, i) => {
-    const el = document.createElement("section");
+    const el = document.createElement("article");
     el.className = "item";
     el.innerHTML =
-      `<h2 style="margin:0;font:inherit">
+      `<h2>
          <button class="trigger" aria-expanded="false" aria-controls="p${i}" id="t${i}">
            <span class="num">${i + 1}</span>
            <span class="title">${item.title}</span>
            ${chevron}
          </button>
        </h2>
-       <div class="panel" id="p${i}" role="region" aria-labelledby="t${i}" data-open="false">
-         <div><p>${item.body}</p></div>
+       <div class="panel" id="p${i}" role="region" aria-labelledby="t${i}">
+         <div><div class="panel-inner"><p>${item.body}</p></div></div>
        </div>`;
     list.appendChild(el);
   });
@@ -206,7 +350,7 @@
     if (!btn) return;
     const open = btn.getAttribute("aria-expanded") === "true";
     btn.setAttribute("aria-expanded", String(!open));
-    document.getElementById(btn.getAttribute("aria-controls")).dataset.open = String(!open);
+    btn.closest(".item").classList.toggle("is-open", !open);
   });
 </script>
 </body>
