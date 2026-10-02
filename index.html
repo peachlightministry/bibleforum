@@ -248,6 +248,20 @@
     color: var(--gold);
   }
   .panel-inner .ref + p { margin-top: 0; }
+  .panel-inner .ref + .sub { margin-top: 0; }
+  .panel-inner .sub {
+    margin: 0 0 var(--space-2);
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--navy);
+  }
+  .panel-inner .sub-deeper {
+    margin: var(--space-4) 0 0;
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--line);
+  }
 
   /* Footer */
   footer {
@@ -325,6 +339,8 @@
       title: "The Parable of The Good Samaritan",
       cite: "(Luke 10:25-37)",
       ref: "World English Bible",
+      parable: "The parable:",
+      deeper: "Deeper meaning",
       body: [
         "A certain lawyer stood up and tested Jesus, saying, \u201cTeacher, what shall I do to inherit eternal life?\u201d",
         "He said to him, \u201cWhat is written in the law? How do you read it?\u201d",
@@ -366,7 +382,7 @@
          </button>
        </h2>
        <div class="panel" id="p${i}" role="region" aria-labelledby="t${i}">
-         <div><div class="panel-inner">${item.ref ? `<p class="ref">${item.ref}</p>` : ""}${item.body.map(t => `<p>${t}</p>`).join("")}</div></div>
+         <div><div class="panel-inner">${item.ref ? `<p class="ref">${item.ref}</p>` : ""}${item.parable ? `<h3 class="sub">${item.parable}</h3>` : ""}${item.body.map(t => `<p>${t}</p>`).join("")}${item.deeper ? `<h3 class="sub sub-deeper">${item.deeper}</h3>` : ""}</div></div>
        </div>`;
     list.appendChild(el);
   });
