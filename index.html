@@ -216,6 +216,7 @@
     color: var(--navy);
     transition: color 0.2s;
   }
+  .cite { font-weight: 500; color: var(--muted); white-space: nowrap; }
   .trigger:hover .title, .is-open .title { color: var(--burgundy); }
 
   .chevron {
@@ -322,7 +323,8 @@
   const items = [
     {
       title: "The Parable of The Good Samaritan",
-      ref: "Luke 10:25\u201337 \u00b7 World English Bible",
+      cite: "(Luke 10:25-37)",
+      ref: "World English Bible",
       body: [
         "A certain lawyer stood up and tested Jesus, saying, \u201cTeacher, what shall I do to inherit eternal life?\u201d",
         "He said to him, \u201cWhat is written in the law? How do you read it?\u201d",
@@ -359,7 +361,7 @@
       `<h2>
          <button class="trigger" aria-expanded="false" aria-controls="p${i}" id="t${i}">
            <span class="num">${i + 1}</span>
-           <span class="title">${item.title}</span>
+           <span class="title">${item.title}${item.cite ? ` <span class="cite">${item.cite}</span>` : ""}</span>
            ${chevron}
          </button>
        </h2>
