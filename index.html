@@ -234,9 +234,19 @@
     margin: 0 var(--space-2);
     padding: var(--space-2) 0 var(--space-3) calc(32px + var(--space-2));
     border-top: 1px solid var(--line);
-    color: var(--muted);
+    color: var(--ink);
   }
   .panel-inner p { margin: 0; }
+  .panel-inner p + p { margin-top: var(--space-2); }
+  .panel-inner .ref {
+    margin-bottom: var(--space-3);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .panel-inner .ref + p { margin-top: 0; }
 
   /* Footer */
   footer {
@@ -310,11 +320,29 @@
 
 <script>
   const items = [
-    { title: "Placeholder", body: "placeholder" },
-    { title: "Placeholder", body: "placeholder" },
-    { title: "Placeholder", body: "placeholder" },
-    { title: "Placeholder", body: "placeholder" },
-    { title: "Placeholder", body: "placeholder" }
+    {
+      title: "The Parable of The Good Samaritan",
+      ref: "Luke 10:25\u201337 \u00b7 World English Bible",
+      body: [
+        "A certain lawyer stood up and tested Jesus, saying, \u201cTeacher, what shall I do to inherit eternal life?\u201d",
+        "He said to him, \u201cWhat is written in the law? How do you read it?\u201d",
+        "He answered, \u201cYou shall love the Lord your God with all your heart, with all your soul, with all your strength, and with all your mind; and your neighbor as yourself.\u201d",
+        "He said to him, \u201cYou have answered correctly. Do this, and you will live.\u201d",
+        "But he, desiring to justify himself, asked Jesus, \u201cWho is my neighbor?\u201d",
+        "Jesus told the story: \u201cA certain man was going down from Jerusalem to Jericho, and he fell among robbers, who both stripped him and beat him, and departed, leaving him half dead.",
+        "By chance a certain priest was going down that way. When he saw him, he passed by on the other side.",
+        "In the same way a Levite also, when he came to the place and saw him, passed by on the other side.",
+        "But a certain Samaritan, as he traveled, came where he was. When he saw him, he had compassion, and came to him, and bound up his wounds, pouring on oil and wine. He set him on his own animal, and brought him to an inn, and took care of him.",
+        "On the next day, when he departed, he took out two denarii, and gave them to the host, and said to him, \u2018Take care of him. Whatever you spend beyond that, I will repay you when I return.\u2019",
+        "Now which of these three do you think seemed to be a neighbor to him who fell among the robbers?\u201d",
+        "He said, \u201cHe who showed mercy on him.\u201d",
+        "Then Jesus said to him, \u201cGo and do likewise.\u201d"
+      ]
+    },
+    { title: "Placeholder", body: ["placeholder"] },
+    { title: "Placeholder", body: ["placeholder"] },
+    { title: "Placeholder", body: ["placeholder"] },
+    { title: "Placeholder", body: ["placeholder"] }
   ];
 
   const chevron =
@@ -336,7 +364,7 @@
          </button>
        </h2>
        <div class="panel" id="p${i}" role="region" aria-labelledby="t${i}">
-         <div><div class="panel-inner"><p>${item.body}</p></div></div>
+         <div><div class="panel-inner">${item.ref ? `<p class="ref">${item.ref}</p>` : ""}${item.body.map(t => `<p>${t}</p>`).join("")}</div></div>
        </div>`;
     list.appendChild(el);
   });
